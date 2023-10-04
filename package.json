@@ -42,6 +42,8 @@
     "yup": "^1.2.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.7.2",
+    "@commitlint/config-conventional": "^17.7.0",
     "@tszhong0411/eslint-config": "^1.0.20",
     "@tszhong0411/prettier-config": "^1.0.7",
     "@tszhong0411/tsconfig": "^1.0.3",
