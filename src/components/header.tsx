@@ -31,8 +31,12 @@ const Header = (props: HeaderProps) => {
       href: '/dictionary'
     },
     {
-      label: 'Games',
+      label: '遊戲',
       href: '/games'
+    },
+    {
+      label: '關於',
+      href: '/about'
     }
   ]
 
