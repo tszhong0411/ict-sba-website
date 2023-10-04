@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Session } from 'next-auth'
+import { type Session } from 'next-auth'
 import { signIn, signOut } from 'next-auth/react'
 
 import { Button } from './ui/button'
@@ -21,12 +21,30 @@ type HeaderProps = {
 const Header = (props: HeaderProps) => {
   const { session } = props
 
+  const links = [
+    {
+      label: '首頁',
+      href: '/'
+    },
+    {
+      label: '字典',
+      href: '/dictionary'
+    },
+    {
+      label: 'Games',
+      href: '/games'
+    }
+  ]
+
   return (
     <header className='p-3'>
       <div className='mx-auto flex max-w-5xl items-center justify-between'>
         <nav className='flex items-center gap-6'>
-          <Link href='/'>首頁</Link>
-          <Link href='/dictionary'>字典</Link>
+          {links.map((link) => (
+            <Link key={link.label} href={link.href}>
+              {link.label}
+            </Link>
+          ))}
         </nav>
         <div className='flex gap-2'>
           {session ? (
@@ -40,7 +58,7 @@ const Header = (props: HeaderProps) => {
                 <DropdownMenuItem asChild>
                   <Link href={`/user/${session.user.username}`}>個人檔案</Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild>
+                <DropdownMenuItem>
                   <button type='button' onClick={() => signOut()}>
                     登出
                   </button>

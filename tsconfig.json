@@ -5,7 +5,7 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
+      "@/*": ["./src/*"]
     },
     "plugins": [
       {
@@ -22,6 +22,6 @@
     "**/*.ts",
     "**/*.js",
     "**/*.cjs",
-    ".next/types/**/*.ts",
+    ".next/types/**/*.ts"
   ]
 }

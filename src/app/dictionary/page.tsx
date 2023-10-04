@@ -10,7 +10,7 @@ import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
 import { searchSchema } from '@/schemas'
 
-import { getDictionary, Word } from './action'
+import { getDictionary, type Word } from './action'
 
 type Values = {
   search: string
