@@ -1,12 +1,12 @@
 import { Inter, Noto_Sans_TC } from 'next/font/google'
-import { getServerSession } from 'next-auth'
 
 import './globals.css'
 import Footer from '@/components/footer'
 import Header from '@/components/header'
-import authOptions from '@/lib/auth'
+import { getCurrentUser } from '@/lib/auth'
 import { cn } from '@/lib/utils'
 
+import Providers from './providers'
 import Toaster from './toaster'
 
 const inter = Inter({
@@ -21,24 +21,35 @@ const notoSansTC = Noto_Sans_TC({
 })
 
 export const metadata = {
-  title: 'English vocabulary learning website'
+  title: 'VocabMaster | Vocabulary learning website'
 }
 
-export default async function RootLayout({
-  children
-}: {
+type RootLayoutProps = {
   children: React.ReactNode
-}) {
-  const session = await getServerSession(authOptions)
+}
+
+const RootLayout = async (props: RootLayoutProps) => {
+  const { children } = props
+  const user = await getCurrentUser()
 
   return (
-    <html lang='en' className={cn(inter.variable, notoSansTC.variable)}>
+    <html
+      lang='en'
+      className={cn(inter.variable, notoSansTC.variable)}
+      suppressHydrationWarning
+    >
       <body>
-        <Header session={session} />
-        <main className='mx-auto max-w-5xl py-12'>{children}</main>
-        <Footer />
-        <Toaster />
+        <Providers>
+          <Header user={user} />
+          <main className='mx-auto max-w-7xl px-4 py-12 sm:px-8'>
+            {children}
+          </main>
+          <Footer />
+          <Toaster />
+        </Providers>
       </body>
     </html>
   )
 }
+
+export default RootLayout

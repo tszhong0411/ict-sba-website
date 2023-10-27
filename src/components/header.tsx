@@ -1,8 +1,9 @@
 'use client'
 
+import { BookOpen } from 'lucide-react'
 import Link from 'next/link'
 import { type Session } from 'next-auth'
-import { signIn, signOut } from 'next-auth/react'
+import { signOut } from 'next-auth/react'
 
 import { Button } from './ui/button'
 import {
@@ -15,11 +16,11 @@ import {
 } from './ui/dropdown-menu'
 
 type HeaderProps = {
-  session: Session | null
+  user: Session['user'] | null
 }
 
 const Header = (props: HeaderProps) => {
-  const { session } = props
+  const { user } = props
 
   const links = [
     {
@@ -41,36 +42,56 @@ const Header = (props: HeaderProps) => {
   ]
 
   return (
-    <header className='p-3'>
-      <div className='mx-auto flex max-w-5xl items-center justify-between'>
-        <nav className='flex items-center gap-6'>
+    <header className='px-6 py-12'>
+      <div className='relative mx-auto flex max-w-7xl items-center justify-between'>
+        <Link href='/' className='flex items-center gap-2 font-bold'>
+          <BookOpen />
+          VocabMaster
+        </Link>
+        <nav className='absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 sm:flex'>
           {links.map((link) => (
-            <Link key={link.label} href={link.href}>
+            <Link
+              key={link.label}
+              href={link.href}
+              className='text-lg font-medium'
+            >
               {link.label}
             </Link>
           ))}
         </nav>
-        <div className='flex gap-2'>
-          {session ? (
+        <div className='flex items-center gap-2'>
+          {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button>{session.user.username}</Button>
+                <Button>{user.username}</Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent>
+              <DropdownMenuContent align='end'>
                 <DropdownMenuLabel>我的帳戶</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
-                  <Link href={`/user/${session.user.username}`}>個人檔案</Link>
+                  <Link href={`/user/${user.username}`}>個人檔案</Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <button type='button' onClick={() => signOut()}>
+                <DropdownMenuItem asChild>
+                  <button
+                    type='button'
+                    onClick={() => signOut()}
+                    className='w-full'
+                  >
                     登出
                   </button>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <Button onClick={() => signIn()}>登入 / 註冊</Button>
+            <div className='space-x-4'>
+              <Link href='/auth'>登入</Link>
+              <Link
+                href='/auth?action=sign-up'
+                className='rounded-lg bg-gradient-to-r from-orange-400 to-orange-600 px-4 py-2 text-white'
+              >
+                註冊
+              </Link>
+            </div>
           )}
         </div>
       </div>

@@ -1,5 +1,5 @@
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
-import type { NextAuthOptions } from 'next-auth'
+import { getServerSession, type NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
 import hashPassword from './hash-password'
@@ -77,11 +77,17 @@ const authOptions: NextAuthOptions = {
     }
   },
   pages: {
-    signIn: '/auth/sign-in'
+    signIn: '/auth'
   },
   session: {
     strategy: 'jwt'
   }
+}
+
+export const getCurrentUser = async () => {
+  const session = await getServerSession(authOptions)
+
+  return session?.user ?? null
 }
 
 export default authOptions

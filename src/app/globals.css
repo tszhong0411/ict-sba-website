@@ -34,17 +34,17 @@
 
     --radius: 0.5rem;
 
-    --content: calc(100vh - 64px - 41px - 96px);
+    --content: calc(100vh - 120px - 80px - 96px);
   }
 
   .dark {
-    --background: 240 10% 3.9%;
+    --background: 0 0% 7%;
     --foreground: 0 0% 98%;
 
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 240 10% 3.9%;
+    --popover: 0 0% 7%;
     --popover-foreground: 0 0% 98%;
 
     --primary: 0 0% 98%;

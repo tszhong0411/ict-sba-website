@@ -1,11 +1,11 @@
-import { Separator } from './ui/separator'
+import ThemeToggle from './theme-toggle'
 
 const Footer = () => {
   return (
-    <footer>
-      <Separator />
-      <div className='mx-auto max-w-5xl px-3 py-2'>
-        &copy; {new Date().getFullYear()}
+    <footer className='px-4 py-5'>
+      <div className='mx-auto flex max-w-7xl items-center justify-between'>
+        <p>&copy; {new Date().getFullYear()}</p>
+        <ThemeToggle />
       </div>
     </footer>
   )

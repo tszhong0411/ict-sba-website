@@ -1,8 +1,10 @@
 'use client'
 
 import { useFormik } from 'formik'
+import { Loader2 } from 'lucide-react'
 import React from 'react'
 import { toast } from 'react-hot-toast'
+import { toFormikValidationSchema } from 'zod-formik-adapter'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -21,6 +23,7 @@ const DictionaryPage = () => {
   const [data, setData] = React.useState<Word[]>()
 
   const onSubmit = async (values: Values) => {
+    setData([])
     setLoading(true)
 
     const result = await getDictionary(
@@ -42,14 +45,14 @@ const DictionaryPage = () => {
     initialValues: {
       search: ''
     },
-    validationSchema: searchSchema,
+    validationSchema: toFormikValidationSchema(searchSchema),
     onSubmit,
     validateOnChange: false,
     validateOnBlur: false
   })
 
   return (
-    <div className='min-h-[--content] px-4'>
+    <div className='mx-auto min-h-[--content] max-w-5xl px-4'>
       <h2 className='mb-6 text-center text-3xl font-semibold sm:text-4xl'>
         字典
       </h2>
@@ -67,8 +70,14 @@ const DictionaryPage = () => {
           required
           {...getFieldProps('search')}
         />
-        <Button className='shrink-0' type='submit'>
-          搜尋
+        <Button
+          className={cn(
+            'w-24 shrink-0',
+            loading && 'cursor-not-allowed opacity-70'
+          )}
+          type='submit'
+        >
+          {loading ? <Loader2 className='animate-spin' /> : '搜尋'}
         </Button>
       </form>
       <div>
@@ -76,7 +85,9 @@ const DictionaryPage = () => {
           <p className='text-sm text-red-500'>{errors.search}</p>
         )}
       </div>
-      {loading && <p>loading...</p>}
+      {loading && (
+        <p className='my-24 text-center text-3xl font-bold'>搜尋中...</p>
+      )}
       {data && (
         <div className='my-12 space-y-16 sm:px-4'>
           {data.map(({ word, partOfSpeech, meaning }) => (

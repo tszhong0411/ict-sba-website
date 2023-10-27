@@ -1,5 +1,7 @@
+import Hero from '@/components/hero'
+
 const Home = () => {
-  return <main />
+  return <Hero />
 }
 
 export default Home

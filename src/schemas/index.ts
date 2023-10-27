@@ -1,19 +1,42 @@
-import { object, ref, string } from 'yup'
+import { z } from 'zod'
 
-export const signInSchema = object({
-  email: string().required('必填').email('無效的電子郵件'),
-  password: string().required('必填')
+export const signInSchema = z.object({
+  email: z
+    .string({
+      required_error: '必填'
+    })
+    .email('無效的電子郵件'),
+  password: z.string({
+    required_error: '必填'
+  })
 })
 
-export const signUpSchema = object({
-  username: string().required('必填').min(3, '至少 3 個字元'),
-  email: string().required('必填').email('無效的電子郵件'),
-  password: string().required('必填'),
-  confirmPassword: string()
-    .required('必填')
-    .oneOf([ref('password')], '密碼不一致')
-})
+export const signUpSchema = z
+  .object({
+    username: z
+      .string({
+        required_error: '必填'
+      })
+      .min(3, '至少 3 個字元'),
+    email: z
+      .string({
+        required_error: '必填'
+      })
+      .email('無效的電子郵件'),
+    password: z.string({
+      required_error: '必填'
+    }),
+    confirmPassword: z.string({
+      required_error: '必填'
+    })
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: '密碼不一致',
+    path: ['confirmPassword']
+  })
 
-export const searchSchema = object({
-  search: string().required('必填')
+export const searchSchema = z.object({
+  search: z.string({
+    required_error: '必填'
+  })
 })

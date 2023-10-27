@@ -1,14 +1,10 @@
+import typography from '@tailwindcss/typography'
 import type { Config } from 'tailwindcss'
 import animate from 'tailwindcss-animate'
 
 export default {
   darkMode: ['class'],
-  content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}'
-  ],
+  content: ['./src/**/*.{ts,tsx}', './contentlayer.config.ts'],
   theme: {
     container: {
       center: true,
@@ -71,8 +67,21 @@ export default {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out'
+      },
+      typography: {
+        DEFAULT: {
+          css: {
+            'h1, h2, h3, h4, h5, h6': {
+              position: 'relative',
+              scrollMarginTop: '128px',
+              '& a::before': {
+                content: 'none !important'
+              }
+            }
+          }
+        }
       }
     }
   },
-  plugins: [animate]
+  plugins: [animate, typography]
 } satisfies Config
