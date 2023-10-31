@@ -42,7 +42,7 @@ const Header = (props: HeaderProps) => {
   ]
 
   return (
-    <header className='px-6 py-12'>
+    <header className='px-6 py-8'>
       <div className='relative mx-auto flex max-w-7xl items-center justify-between'>
         <Link href='/' className='flex items-center gap-2 font-bold'>
           <BookOpen />

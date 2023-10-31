@@ -1,4 +1,4 @@
-import { Inter, Noto_Sans_TC } from 'next/font/google'
+import { Inter, Noto_Sans_TC, Roboto_Mono } from 'next/font/google'
 
 import './globals.css'
 import Footer from '@/components/footer'
@@ -20,6 +20,12 @@ const notoSansTC = Noto_Sans_TC({
   subsets: ['latin']
 })
 
+const robotoMono = Roboto_Mono({
+  variable: '--font-roboto-mono',
+  weight: ['400'],
+  subsets: ['latin']
+})
+
 export const metadata = {
   title: 'VocabMaster | Vocabulary learning website'
 }
@@ -35,13 +41,13 @@ const RootLayout = async (props: RootLayoutProps) => {
   return (
     <html
       lang='en'
-      className={cn(inter.variable, notoSansTC.variable)}
+      className={cn(inter.variable, notoSansTC.variable, robotoMono.variable)}
       suppressHydrationWarning
     >
       <body>
         <Providers>
           <Header user={user} />
-          <main className='mx-auto max-w-7xl px-4 py-12 sm:px-8'>
+          <main className='mx-auto max-w-7xl p-4 sm:px-8 sm:py-12'>
             {children}
           </main>
           <Footer />

@@ -1,5 +1,6 @@
 import typography from '@tailwindcss/typography'
 import type { Config } from 'tailwindcss'
+import { fontFamily } from 'tailwindcss/defaultTheme'
 import animate from 'tailwindcss-animate'
 
 export default {
@@ -80,6 +81,14 @@ export default {
             }
           }
         }
+      },
+      fontFamily: {
+        default: [
+          'var(--font-noto-sans-tc)',
+          'var(--font-inter)',
+          ...fontFamily.sans
+        ],
+        mono: ['var(--font-roboto-mono)']
       }
     }
   },

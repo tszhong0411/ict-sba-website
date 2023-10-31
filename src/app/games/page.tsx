@@ -9,7 +9,7 @@ const GamesPage = () => {
     },
     {
       name: '多項選擇題',
-      link: '/games/multiple-choice',
+      link: '/games/mc',
       description: '提供有關文法、時態的多項選擇題。'
     },
     {

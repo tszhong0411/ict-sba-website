@@ -2,16 +2,16 @@
   "private": true,
   "name": "main_website",
   "version": "0.0.0",
-  "license": "GPL-3.0",
-  "author": "Lai Tsz Hong <info@honghong.me> (https://github.com/tszhong0411/)",
+  "license": "AGPL-3.0-only",
+  "author": "tszhong0411 <info@honghong.me> (https://github.com/tszhong0411/)",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tszhong0411/honghong.me.git"
+    "url": "git+https://github.com/tszhong0411/ict-sba-website.git"
   },
   "type": "module",
   "scripts": {
     "build": "next build",
-    "dev": "next dev",
+    "dev": "next dev -p 8888",
     "format": "prettier -w .",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
@@ -25,9 +25,11 @@
     "@radix-ui/react-aspect-ratio": "^1.0.3",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
     "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-tabs": "^1.0.4",
+    "@tanstack/react-table": "^8.10.7",
     "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
@@ -36,7 +38,7 @@
     "framer-motion": "^10.16.4",
     "jsdom": "^22.1.0",
     "lucide-react": "^0.287.0",
-    "next": "13.5.4",
+    "next": "^14.0.0",
     "next-auth": "^4.23.2",
     "next-contentlayer": "^0.3.4",
     "next-themes": "^0.2.1",
@@ -65,7 +67,7 @@
     "@types/react-dom": "^18.2.13",
     "autoprefixer": "^10.4.16",
     "eslint": "^8.51.0",
-    "eslint-config-next": "13.5.4",
+    "eslint-config-next": "^14.0.0",
     "husky": "^8.0.3",
     "lint-staged": "^15.0.1",
     "postcss": "^8.4.31",
@@ -82,6 +84,9 @@
     "parserOptions": {
       "ecmaVersion": "latest",
       "project": "./tsconfig.json"
+    },
+    "rules": {
+      "security/detect-object-injection": 0
     }
   },
   "lint-staged": {

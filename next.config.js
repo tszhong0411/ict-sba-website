@@ -2,10 +2,6 @@ import { withContentlayer } from 'next-contentlayer'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    serverActions: true
-  },
-
   webpack: (config) => {
     config.infrastructureLogging = {
       level: 'error'
