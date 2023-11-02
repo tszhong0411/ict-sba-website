@@ -4,7 +4,7 @@ import { mc_questions } from '@/data/games/mc'
 import { getCurrentUser } from '@/lib/auth'
 import prisma from '@/lib/prisma'
 
-export const getMCScore = async (type: string) => {
+export const getMCScore = async (type: string): Promise<string> => {
   const user = await getCurrentUser()
 
   if (!user) {
@@ -37,10 +37,10 @@ export const getMCScore = async (type: string) => {
   let score = 0
 
   for (const [index, answer] of user_answers.answers.entries()) {
-    if (Number(answer) === questionSet.questions[index].answer) {
+    if (answer === questionSet.questions[index].answer) {
       score += 10
     }
   }
 
-  return score
+  return `${score} / ${questionSet.questions.length * 10}`
 }

@@ -26,17 +26,17 @@ const Hero = () => {
     <div className='relative flex min-h-[--content] flex-col items-center justify-center'>
       <div className='text-center text-lg'>
         <h2 className='mb-2 text-2xl font-bold'>歡迎來到</h2>
-        <h1 className='bg-gradient-to-r from-[#ff1835] to-[#ffc900] bg-clip-text text-8xl font-black text-transparent'>
+        <h1 className='bg-gradient-to-r from-[#ff1835] to-[#ffc900] bg-clip-text text-5xl font-black text-transparent sm:text-8xl'>
           VocabMaster
         </h1>
       </div>
 
       <div className='my-12 flex flex-col items-center gap-12'>
         <div className='space-y-4'>
-          <h2 className='text-center text-2xl font-medium'>
+          <h2 className='text-center text-lg font-medium sm:text-2xl'>
             學習詞彙，掌握英語！
           </h2>
-          <p className='text-lg'>加入我們，有效提升您的英語詞彙技能。</p>
+          <p className='sm:text-lg'>加入我們，有效提升您的英語詞彙技能。</p>
         </div>
         <button
           type='button'

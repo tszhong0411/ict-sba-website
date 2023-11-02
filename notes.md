@@ -7,3 +7,5 @@ don't use `any` type
 
 !!! --- !!!
 Don't use `edge` runtime version of next-auth since prisma doesn't support it yet.
+
+add breadcrumbs

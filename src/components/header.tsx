@@ -5,6 +5,9 @@ import Link from 'next/link'
 import { type Session } from 'next-auth'
 import { signOut } from 'next-auth/react'
 
+import { config } from '@/config/site'
+
+import MobileNav from './mobile-nav'
 import { Button } from './ui/button'
 import {
   DropdownMenu,
@@ -14,6 +17,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from './ui/dropdown-menu'
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  navigationMenuTriggerStyle
+} from './ui/navigation-menu'
 
 type HeaderProps = {
   user: Session['user'] | null
@@ -22,43 +32,32 @@ type HeaderProps = {
 const Header = (props: HeaderProps) => {
   const { user } = props
 
-  const links = [
-    {
-      label: '首頁',
-      href: '/'
-    },
-    {
-      label: '字典',
-      href: '/dictionary'
-    },
-    {
-      label: '遊戲',
-      href: '/games'
-    },
-    {
-      label: '關於',
-      href: '/about'
-    }
-  ]
-
   return (
-    <header className='px-6 py-8'>
+    <header className='px-2 py-8 sm:px-6'>
       <div className='relative mx-auto flex max-w-7xl items-center justify-between'>
-        <Link href='/' className='flex items-center gap-2 font-bold'>
-          <BookOpen />
-          VocabMaster
-        </Link>
-        <nav className='absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 sm:flex'>
-          {links.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className='text-lg font-medium'
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+        <div className='flex items-center gap-2'>
+          <MobileNav />
+          <Link
+            href='/'
+            className='flex items-center gap-2 font-bold max-sm:hidden'
+          >
+            <BookOpen />
+            VocabMaster
+          </Link>
+        </div>
+        <NavigationMenu className='absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 sm:flex'>
+          <NavigationMenuList>
+            {config.navLinks.map((link) => (
+              <NavigationMenuItem key={link.href}>
+                <Link href={link.href} legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    {link.label}
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            ))}
+          </NavigationMenuList>
+        </NavigationMenu>
         <div className='flex items-center gap-2'>
           {user ? (
             <DropdownMenu>

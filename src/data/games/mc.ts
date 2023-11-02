@@ -8,9 +8,9 @@ export type MC_Question = {
   questions: Array<{
     title: string
     options: string[]
-    answer: number
+    answer: string
   }>
-  score?: number | '未完成'
+  score?: string
 }
 
 export const mc_questions: MC_Question[] = [
@@ -21,52 +21,52 @@ export const mc_questions: MC_Question[] = [
       {
         title: 'I dislike ________ to the movies by myself.',
         options: ['going', 'to go', 'going/to go'],
-        answer: 0
+        answer: 'going'
       },
       {
         title: 'We started ________ dinner without you.',
         options: ['eating', 'to eat', 'eating/to eat'],
-        answer: 2
+        answer: 'eating/to eat'
       },
       {
         title: "I can't imagine ________ my own house.",
         options: ['buying', 'to buy', 'buying/to buy'],
-        answer: 0
+        answer: 'buying'
       },
       {
         title: 'I used ________ that television show all the time.',
         options: ['watching', 'to watch', 'watching/to watch'],
-        answer: 1
+        answer: 'to watch'
       },
       {
         title: 'I always eat breakfast before ________ to school.',
         options: ['going', 'to go', 'going/to go'],
-        answer: 0
+        answer: 'going'
       },
       {
         title: 'When do you practice ________ the piano?',
         options: ['playing', 'to play', 'playing/to play'],
-        answer: 0
+        answer: 'playing'
       },
       {
         title: 'My grandmother prefers ________ science fiction books.',
         options: ['reading', 'to read', 'reading/to read'],
-        answer: 2
+        answer: 'reading/to read'
       },
       {
         title: 'My teacher said my essay needs ________ by tomorrow.',
         options: ['correcting', 'to correct', 'corrected'],
-        answer: 0
+        answer: 'correcting'
       },
       {
         title: 'I am used ________ her in a bad mood.',
         options: ['to seeing', 'to see', 'seeing'],
-        answer: 0
+        answer: 'to seeing'
       },
       {
         title: 'Our neighbor used _____ a pipe.',
         options: ['smoking', 'to smoking', 'to smoke'],
-        answer: 2
+        answer: 'to smoke'
       }
     ]
   },
@@ -77,52 +77,52 @@ export const mc_questions: MC_Question[] = [
       {
         title: 'We like ________ our grandmother on Sundays.',
         options: ['to visit', 'visiting', 'to visit/visiting'],
-        answer: 2
+        answer: 'to visit/visiting'
       },
       {
         title: 'I might want ________ some money soon.',
         options: ['to borrow', 'borrowing', 'to borrow/borrowing'],
-        answer: 0
+        answer: 'to borrow'
       },
       {
         title: 'My father hates ________ a tie to work.',
         options: ['to wear', 'wearing', 'to wear/wearing'],
-        answer: 2
+        answer: 'to wear/wearing'
       },
       {
         title: "We can't afford ________ a vacation this summer.",
         options: ['to take', 'taking', 'to take/taking'],
-        answer: 0
+        answer: 'to take'
       },
       {
         title: 'The company was pleased ________ your thank-you letter.',
         options: ['to receive', 'receiving', 'to receive/receiving'],
-        answer: 0
+        answer: 'to receive'
       },
       {
         title: 'Would you mind ________ a window?',
         options: ['to open', 'opening', 'to open/opening'],
-        answer: 1
+        answer: 'opening'
       },
       {
         title: 'My suitcase is light enough ________ this time.',
         options: ['to carry', 'carrying', 'to carry/carrying'],
-        answer: 0
+        answer: 'to carry'
       },
       {
         title: 'She cannot leave the table without ________ her dinner.',
         options: ['to finish', 'finishing', 'to finish/finishing'],
-        answer: 1
+        answer: 'finishing'
       },
       {
         title: 'The music will continue ________ until you turn it off.',
         options: ['to play', 'playing', 'to play/playing'],
-        answer: 2
+        answer: 'to play/playing'
       },
       {
         title: 'My little brother dislikes ________ his hair brushed.',
         options: ['to have', 'having', 'to have/having'],
-        answer: 1
+        answer: 'having'
       }
     ]
   }

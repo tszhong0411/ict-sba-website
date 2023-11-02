@@ -130,15 +130,14 @@ const Form = (props: FormProps) => {
         </div>
         {!showAnswers && (
           <div className='flex gap-4 max-sm:flex-col'>
-            <div className='relative h-[500px] w-full'>
-              <Image
-                src={`/images/games/spelling/${questions[currentIndex].answer}.jpg`}
-                fill
-                className='mx-auto rounded-md border object-cover'
-                alt={`Image of question ${currentIndex}`}
-                priority
-              />
-            </div>
+            <Image
+              src={`/images/games/spelling/${questions[currentIndex].answer}.png`}
+              width={1000 / 3}
+              height={1500 / 3}
+              className='mx-auto rounded-md border object-cover'
+              alt={`第 ${currentIndex} 題的圖片`}
+              priority
+            />
             <div className='flex w-full flex-col gap-4'>
               <Label htmlFor='answer'>答案</Label>
               <Input
@@ -189,12 +188,13 @@ const Form = (props: FormProps) => {
 
               return (
                 <div key={question.answer} className='space-y-4 p-4'>
-                  <div className='relative mx-auto h-[500px] w-96'>
+                  <div className='relative mx-auto'>
                     <Image
-                      src={`/images/games/spelling/${questions[index].answer}.jpg`}
-                      fill
+                      src={`/images/games/spelling/${questions[index].answer}.png`}
+                      width={1000 / 2}
+                      height={1500 / 2}
                       className='mx-auto rounded-md border object-cover'
-                      alt={`Image of question ${index}`}
+                      alt={`第 ${index} 題的圖片`}
                     />
                   </div>
                   <div className='flex flex-col text-center'>

@@ -2,10 +2,6 @@
 
 import { revalidatePath } from 'next/cache'
 
-import {
-  type Spelling_Question_Difficulty,
-  type Spelling_Question_Type
-} from '@/data/games/spelling'
 import { getCurrentUser } from '@/lib/auth'
 import prisma from '@/lib/prisma'
 
@@ -15,8 +11,8 @@ export const saveAnswers = async ({
   difficulty
 }: {
   answers: string[]
-  type: Spelling_Question_Type
-  difficulty: Spelling_Question_Difficulty
+  type: string
+  difficulty: string
 }) => {
   const user = await getCurrentUser()
 

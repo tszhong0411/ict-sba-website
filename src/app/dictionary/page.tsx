@@ -1,12 +1,21 @@
 'use client'
 
-import { useFormik } from 'formik'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader2 } from 'lucide-react'
 import React from 'react'
+import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
-import { toFormikValidationSchema } from 'zod-formik-adapter'
+import { type z } from 'zod'
 
 import { Button } from '@/components/ui/button'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
+} from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
@@ -14,15 +23,11 @@ import { searchSchema } from '@/schemas'
 
 import { getDictionary, type Word } from './action'
 
-type Values = {
-  search: string
-}
-
 const DictionaryPage = () => {
   const [loading, setLoading] = React.useState(false)
   const [data, setData] = React.useState<Word[]>()
 
-  const onSubmit = async (values: Values) => {
+  const onSubmit = async (values: z.infer<typeof searchSchema>) => {
     setData([])
     setLoading(true)
 
@@ -41,14 +46,11 @@ const DictionaryPage = () => {
     return setLoading(false)
   }
 
-  const { handleSubmit, getFieldProps, touched, errors } = useFormik<Values>({
-    initialValues: {
+  const form = useForm<z.infer<typeof searchSchema>>({
+    resolver: zodResolver(searchSchema),
+    defaultValues: {
       search: ''
-    },
-    validationSchema: toFormikValidationSchema(searchSchema),
-    onSubmit,
-    validateOnChange: false,
-    validateOnBlur: false
+    }
   })
 
   return (
@@ -56,35 +58,41 @@ const DictionaryPage = () => {
       <h2 className='mb-6 text-center text-3xl font-semibold sm:text-4xl'>
         字典
       </h2>
-      <form
-        className='flex flex-col gap-1.5 sm:flex-row'
-        onSubmit={handleSubmit}
-      >
-        <Input
-          type='text'
-          className={cn(
-            'w-full',
-            errors.search && touched.search && 'border-red-500'
-          )}
-          placeholder='在這裡輸入你想查詢的詞語'
-          required
-          {...getFieldProps('search')}
-        />
-        <Button
-          className={cn(
-            'w-24 shrink-0',
-            loading && 'cursor-not-allowed opacity-70'
-          )}
-          type='submit'
+      <Form {...form}>
+        <form
+          className='flex w-full flex-col gap-1.5 sm:flex-row sm:items-end'
+          onSubmit={form.handleSubmit(onSubmit)}
         >
-          {loading ? <Loader2 className='animate-spin' /> : '搜尋'}
-        </Button>
-      </form>
-      <div>
-        {errors.search && touched.search && (
-          <p className='text-sm text-red-500'>{errors.search}</p>
-        )}
-      </div>
+          <FormField
+            control={form.control}
+            name='search'
+            render={({ field }) => (
+              <FormItem className='sm:grow'>
+                <FormLabel>搜尋</FormLabel>
+                <FormControl>
+                  <Input
+                    type='text'
+                    className='w-full'
+                    placeholder='在這裡輸入你想查詢的詞語'
+                    required
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button
+            className={cn(
+              'sm:w-24',
+              loading && 'cursor-not-allowed opacity-70'
+            )}
+            type='submit'
+          >
+            {loading ? <Loader2 className='animate-spin' /> : '搜尋'}
+          </Button>
+        </form>
+      </Form>
       {loading && (
         <p className='my-24 text-center text-3xl font-bold'>搜尋中...</p>
       )}

@@ -16,15 +16,14 @@ const SpellingPage = () => {
       <h2 className='mb-16 mt-8 text-center text-5xl font-bold'>拼字遊戲</h2>
       <div className='grid grid-cols-1 gap-8 lg:grid-cols-2'>
         {spelling_questions.map((question) => (
-          <div
-            key={question.type}
-            className='relative h-96 w-full rounded-lg border'
-          >
+          <div key={question.type} className='relative rounded-lg border'>
             <Image
-              src={`/images/games/spelling/${question.type}.jpg`}
-              fill
-              className='rounded-lg object-cover opacity-30'
-              alt={`${question.type}'s banner`}
+              src={`/images/games/spelling/${question.type}.png`}
+              width={2250}
+              height={1500}
+              className='rounded-lg opacity-30'
+              alt={`${SPELLING_TYPE_TEXT[question.type]}拼字的封面`}
+              priority
             />
             <div className='absolute top-4 w-full p-4 text-3xl font-semibold lg:text-5xl'>
               {SPELLING_TYPE_TEXT[question.type]}
