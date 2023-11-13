@@ -11,9 +11,11 @@ model User {
   id          String   @id @default(cuid())
   displayName String?
   username    String   @unique
+  nickname    String?
   email       String   @unique
   password    String
   image       String?
+  bio         String?
   score       Int      @default(0)
   createdAt   DateTime @default(now())
   Quiz        Quiz[]

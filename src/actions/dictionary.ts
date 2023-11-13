@@ -77,3 +77,19 @@ export const getDictionary = async (query: string, language: Languages) => {
 
   return results
 }
+
+export const getPronunciation = async (
+  query: string,
+  language: Languages
+): Promise<string> => {
+  const dom = await JSDOM.fromURL(
+    `https://dictionary.cambridge.org/us/dictionary/${language}/${query}`
+  )
+  const document = dom.window.document
+
+  return (
+    document.querySelector(
+      'audio[id=audio2] > source:nth-child(2)'
+    ) as HTMLSourceElement
+  ).src
+}

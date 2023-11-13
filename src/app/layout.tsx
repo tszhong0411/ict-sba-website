@@ -47,7 +47,7 @@ const RootLayout = async (props: RootLayoutProps) => {
       <body>
         <Providers>
           <Header user={user} />
-          <main className='mx-auto max-w-7xl p-4 sm:px-8 sm:py-12'>
+          <main className='mx-auto max-w-7xl p-4 sm:px-8 sm:pb-12 sm:pt-0'>
             {children}
           </main>
           <Footer />

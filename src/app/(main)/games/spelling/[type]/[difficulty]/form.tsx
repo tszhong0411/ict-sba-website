@@ -1,15 +1,21 @@
 'use client'
 
 import { type Quiz } from '@prisma/client'
-import { Loader2Icon } from 'lucide-react'
+import { Loader2Icon, Volume2Icon } from 'lucide-react'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import React from 'react'
 import toast from 'react-hot-toast'
 
 import { addScore } from '@/actions/add-score'
+import { getPronunciation } from '@/actions/dictionary'
 import { saveAnswers } from '@/actions/save-answers'
-import Back from '@/components/back'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger
+} from '@/components/ui/accordion'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -40,6 +46,7 @@ const Form = (props: FormProps) => {
   const [currentIndex, setCurrentIndex] = React.useState(0)
   const questions = getSpellingQuestions(type, difficulty)
   const [showAnswers, setShowAnswers] = React.useState(!!answers)
+  const [accordionValue, setAccordionValue] = React.useState<string>('')
 
   if (!questions || questions.length === 0) {
     notFound()
@@ -52,6 +59,8 @@ const Form = (props: FormProps) => {
     if (inputRef.current) {
       inputRef.current.value = ''
     }
+
+    setAccordionValue('')
   }
 
   const setCurrentAnswer = (value: string) =>
@@ -65,7 +74,7 @@ const Form = (props: FormProps) => {
     if (currentIndex - 1 !== -1) {
       resetInput()
       if (inputRef.current) {
-        inputRef.current.value = currentUserAnswers[currentIndex - 1]
+        inputRef.current.value = currentUserAnswers[currentIndex - 1] ?? ''
       }
       return setCurrentIndex((prev) => prev - 1)
     }
@@ -113,7 +122,6 @@ const Form = (props: FormProps) => {
 
   return (
     <>
-      <Back />
       <div className='mx-auto max-w-3xl flex-col items-center justify-center gap-8'>
         <div className='flex w-full items-center justify-center'>
           <div className='flex flex-col items-center gap-4 p-16'>
@@ -177,6 +185,33 @@ const Form = (props: FormProps) => {
                   </Button>
                 )}
               </div>
+              <Accordion
+                type='single'
+                onValueChange={setAccordionValue}
+                value={accordionValue}
+                collapsible
+              >
+                <AccordionItem value='answer'>
+                  <AccordionTrigger className='px-2'>提示</AccordionTrigger>
+                  <AccordionContent className='flex items-center gap-2 px-2 text-2xl font-medium'>
+                    {questions[currentIndex].hint}
+                    <Volume2Icon
+                      size={24}
+                      className='cursor-pointer'
+                      onClick={async () => {
+                        const audio = new Audio(
+                          await getPronunciation(
+                            questions[currentIndex].answer,
+                            'english-chinese-traditional'
+                          )
+                        )
+
+                        await audio.play()
+                      }}
+                    />
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
             </div>
           </div>
         )}

@@ -9,6 +9,11 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 import { type z } from 'zod'
 
+import {
+  createUser,
+  isEmailExists,
+  isUsernameExists
+} from '@/actions/credentials'
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -20,8 +25,6 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { signUpSchema } from '@/schemas'
-
-import { createUser, isEmailExists, isUsernameExists } from './actions'
 
 const SignUpForm = () => {
   const searchParams = useSearchParams()

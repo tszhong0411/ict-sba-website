@@ -7,6 +7,8 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 import { type z } from 'zod'
 
+import { getDictionary, type Word } from '@/actions/dictionary'
+import PageTitle from '@/components/page-title'
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -20,8 +22,6 @@ import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
 import { searchSchema } from '@/schemas'
-
-import { getDictionary, type Word } from './action'
 
 const DictionaryPage = () => {
   const [loading, setLoading] = React.useState(false)
@@ -55,9 +55,7 @@ const DictionaryPage = () => {
 
   return (
     <div className='mx-auto min-h-[--content] max-w-5xl px-4'>
-      <h2 className='mb-6 text-center text-3xl font-semibold sm:text-4xl'>
-        字典
-      </h2>
+      <PageTitle title='字典' />
       <Form {...form}>
         <form
           className='flex w-full flex-col gap-1.5 sm:flex-row sm:items-end'

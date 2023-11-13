@@ -33,10 +33,11 @@ const authOptions: NextAuthOptions = {
         return {
           id: user.id,
           email: user.email,
-          displayName: user.displayName,
           image: user.image,
           createdAt: user.createdAt,
-          username: user.username
+          username: user.username,
+          nickname: user.nickname,
+          bio: user.bio
         }
       }
     })
@@ -50,10 +51,11 @@ const authOptions: NextAuthOptions = {
         select: {
           id: true,
           email: true,
-          displayName: true,
           image: true,
           createdAt: true,
-          username: true
+          username: true,
+          nickname: true,
+          bio: true
         }
       })
 
@@ -69,9 +71,11 @@ const authOptions: NextAuthOptions = {
     // eslint-disable-next-line @typescript-eslint/require-await
     async session({ session, token }) {
       session.user.id = token.id as string
-      session.user.displayName = token.displayName as string
+      session.user.image = token.image as string | null
       session.user.username = token.username as string
-      session.user.createdAt = token.createdAt as string
+      session.user.createdAt = token.createdAt as Date
+      session.user.nickname = token.nickname as string
+      session.user.bio = token.bio as string
 
       return session
     }

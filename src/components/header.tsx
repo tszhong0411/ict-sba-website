@@ -1,6 +1,7 @@
 'use client'
 
-import { BookOpen } from 'lucide-react'
+import { BookOpen, UserIcon } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { type Session } from 'next-auth'
 import { signOut } from 'next-auth/react'
@@ -62,7 +63,18 @@ const Header = (props: HeaderProps) => {
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button>{user.username}</Button>
+                <Button type='button' className='flex items-center gap-2'>
+                  {!user.image && <UserIcon size={24} />}
+                  {user.image && (
+                    <Image
+                      src={user.image}
+                      width={24}
+                      height={24}
+                      alt={`${user.username} 的個人圖片`}
+                    />
+                  )}
+                  {user.username}
+                </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align='end'>
                 <DropdownMenuLabel>我的帳戶</DropdownMenuLabel>

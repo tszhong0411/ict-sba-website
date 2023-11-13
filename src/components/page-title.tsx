@@ -1,16 +1,24 @@
+import React from 'react'
+
+import { cn } from '@/lib/utils'
+
 type PageTitleProps = {
   title: string
-  description: string
-}
+} & React.ComponentPropsWithoutRef<'h2'>
 
 const PageTitle = (props: PageTitleProps) => {
-  const { title, description } = props
+  const { title, className, ...rest } = props
 
   return (
-    <div className='my-8'>
-      <h1 className='text-4xl font-bold'>{title}</h1>
-      <p className='mt-4'>{description}</p>
-    </div>
+    <h2
+      className={cn(
+        'mb-16 mt-8 text-center text-2xl font-bold md:text-4xl',
+        className
+      )}
+      {...rest}
+    >
+      {title}
+    </h2>
   )
 }
 

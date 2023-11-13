@@ -1,5 +1,5 @@
 import { getMCScore } from '@/actions/get-mc-score'
-import Back from '@/components/back'
+import PageTitle from '@/components/page-title'
 import { type MC_Question, mc_questions } from '@/data/games/mc'
 
 import { columns } from './columns'
@@ -19,8 +19,7 @@ const MCPage = async () => {
 
   return (
     <>
-      <Back />
-      <h2 className='mb-16 mt-8 text-center text-5xl font-bold'>多項選擇題</h2>
+      <PageTitle title='多項選擇題' />
       <DataTable columns={columns} data={withScore} />
     </>
   )

@@ -18,6 +18,7 @@ type Spelling_Question = {
   questions: Array<{
     answer: string
     difficulty: Spelling_Question_Difficulty
+    hint?: string
   }>
 }
 
@@ -27,71 +28,88 @@ export const spelling_questions: Spelling_Question[] = [
     questions: [
       {
         answer: 'dog',
-        difficulty: 'easy'
+        difficulty: 'easy',
+        hint: 'd _ _'
       },
       {
         answer: 'cat',
-        difficulty: 'easy'
+        difficulty: 'easy',
+        hint: 'c _ _'
       },
       {
         answer: 'rabbit',
-        difficulty: 'easy'
+        difficulty: 'easy',
+        hint: 'r _ _ _ _ t'
       },
       {
         answer: 'lion',
-        difficulty: 'easy'
+        difficulty: 'easy',
+        hint: 'l _ _ _'
       },
       {
         answer: 'elephant',
-        difficulty: 'easy'
+        difficulty: 'easy',
+        hint: 'e _ _ _ _ _ _ t'
       },
       {
         answer: 'bird',
-        difficulty: 'easy'
+        difficulty: 'easy',
+        hint: 'b _ _ _'
       },
       {
         answer: 'fish',
-        difficulty: 'easy'
+        difficulty: 'easy',
+        hint: 'f _ _ _'
       },
       {
         answer: 'tiger',
-        difficulty: 'medium'
+        difficulty: 'medium',
+        hint: 't _ _ _ _'
       },
       {
         answer: 'bear',
-        difficulty: 'medium'
+        difficulty: 'medium',
+        hint: 'b _ _ _'
       },
       {
         answer: 'parrot',
-        difficulty: 'medium'
+        difficulty: 'medium',
+        hint: 'p _ _ _ _ _'
       },
       {
         answer: 'penguin',
-        difficulty: 'medium'
+        difficulty: 'medium',
+        hint: 'p _ _ _ _ i n'
       },
       {
         answer: 'kangaroo',
-        difficulty: 'medium'
+        difficulty: 'medium',
+        hint: 'k a _ _ _ _ o o'
       },
       {
         answer: 'cheetah',
-        difficulty: 'hard'
+        difficulty: 'hard',
+        hint: 'c _ _ _ _ _ h'
       },
       {
         answer: 'giraffe',
-        difficulty: 'hard'
+        difficulty: 'hard',
+        hint: 'g _ _ _ _ _ e'
       },
       {
         answer: 'koala',
-        difficulty: 'hard'
+        difficulty: 'hard',
+        hint: 'k _ _ _ _'
       },
       {
         answer: 'raccoon',
-        difficulty: 'hard'
+        difficulty: 'hard',
+        hint: 'r _ _ _ _ _ n'
       },
       {
         answer: 'dolphin',
-        difficulty: 'hard'
+        difficulty: 'hard',
+        hint: 'd _ _ _ _ _ _'
       }
     ]
   },
@@ -100,67 +118,83 @@ export const spelling_questions: Spelling_Question[] = [
     questions: [
       {
         answer: 'apple',
-        difficulty: 'easy'
+        difficulty: 'easy',
+        hint: 'a _ _ _ _'
       },
       {
         answer: 'banana',
-        difficulty: 'easy'
+        difficulty: 'easy',
+        hint: 'b _ _ _ _ _'
       },
       {
         answer: 'orange',
-        difficulty: 'easy'
+        difficulty: 'easy',
+        hint: 'o _ _ _ _ _'
       },
       {
         answer: 'grape',
-        difficulty: 'easy'
+        difficulty: 'easy',
+        hint: 'g _ _ _ _'
       },
       {
         answer: 'watermelon',
-        difficulty: 'easy'
+        difficulty: 'easy',
+        hint: 'w _ _ _ _ _ _ _ _'
       },
       {
         answer: 'pineapple',
-        difficulty: 'easy'
+        difficulty: 'easy',
+        hint: 'p _ _ _ _ _ _ _ _'
       },
       {
         answer: 'strawberry',
-        difficulty: 'medium'
+        difficulty: 'medium',
+        hint: 's _ _ _ _ _ _ _ _ _'
       },
       {
         answer: 'cherry',
-        difficulty: 'medium'
+        difficulty: 'medium',
+        hint: 'c _ _ _ _ _'
       },
       {
         answer: 'avocado',
-        difficulty: 'medium'
+        difficulty: 'medium',
+        hint: 'a _ _ _ _ _ _'
       },
       {
         answer: 'lime',
-        difficulty: 'medium'
+        difficulty: 'medium',
+        hint: 'l _ _ _'
       },
       {
         answer: 'blackberry',
-        difficulty: 'medium'
+        difficulty: 'medium',
+        hint: 'b _ _ _ _ _ _ _ _'
       },
       {
         answer: 'persimmon',
-        difficulty: 'hard'
+        difficulty: 'hard',
+        hint: 'p _ _ _ _ _ _ _ _ _'
       },
       {
         answer: 'kumquat',
-        difficulty: 'hard'
+        difficulty: 'hard',
+        hint: 'k _ _ _ _ _ _'
       },
       {
         answer: 'raspberry',
-        difficulty: 'hard'
+        difficulty: 'hard',
+        hint: 'r _ _ _ _ _ _ _ _'
       },
       {
         answer: 'pomegranate',
-        difficulty: 'hard'
+        difficulty: 'hard',
+        hint: 'p _ _ _ _ _ _ _ _ _ _'
       },
       {
         answer: 'papaya',
-        difficulty: 'hard'
+        difficulty: 'hard',
+        hint: 'p _ _ _ _ _'
       }
     ]
   },
@@ -169,63 +203,78 @@ export const spelling_questions: Spelling_Question[] = [
     questions: [
       {
         answer: 'japan',
-        difficulty: 'easy'
+        difficulty: 'easy',
+        hint: 'j _ _ _ _'
       },
       {
         answer: 'france',
-        difficulty: 'easy'
+        difficulty: 'easy',
+        hint: 'f _ _ _ _ _'
       },
       {
         answer: 'brazil',
-        difficulty: 'easy'
+        difficulty: 'easy',
+        hint: 'b _ _ _ _ _'
       },
       {
         answer: 'china',
-        difficulty: 'easy'
+        difficulty: 'easy',
+        hint: 'c _ _ _ _'
       },
       {
         answer: 'italy',
-        difficulty: 'easy'
+        difficulty: 'easy',
+        hint: 'i _ _ _ _'
       },
       {
         answer: 'netherlands',
-        difficulty: 'medium'
+        difficulty: 'medium',
+        hint: 'n _ _ _ _ _ _ _ _ _'
       },
       {
         answer: 'indonesia',
-        difficulty: 'medium'
+        difficulty: 'medium',
+        hint: 'i _ _ _ _ _ _ _ _'
       },
       {
         answer: 'portugal',
-        difficulty: 'medium'
+        difficulty: 'medium',
+        hint: 'p _ _ _ _ _ _ _'
       },
       {
         answer: 'kenya',
-        difficulty: 'medium'
+        difficulty: 'medium',
+        hint: 'k _ _ _ _'
       },
       {
         answer: 'argentina',
-        difficulty: 'medium'
+        difficulty: 'medium',
+        hint: 'a _ _ _ _ _ _ _ _'
       },
       {
         answer: 'philippines',
-        difficulty: 'hard'
+        difficulty: 'hard',
+        hint: 'p _ _ _ _ _ _ _ _ _ _'
       },
       {
         answer: 'switzerland',
-        difficulty: 'hard'
+        difficulty: 'hard',
+        hint: 's _ _ _ _ _ _ _ _ _ _'
       },
       {
         answer: 'australia',
-        difficulty: 'hard'
+        difficulty: 'hard',
+        hint: 'a _ _ _ _ _ _ _ _'
       },
       {
         answer: 'malaysia',
-        difficulty: 'hard'
+        difficulty: 'hard',
+        hint: 'm _ _ _ _ _ _ _'
       },
       {
         answer: 'norway',
-        difficulty: 'hard'
+        difficulty: 'hard',
+        hint: 'n _ _ _ _ _'
       }
     ]
   }

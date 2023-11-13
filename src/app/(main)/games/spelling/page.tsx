@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-import Back from '@/components/back'
+import PageTitle from '@/components/page-title'
 import { buttonVariants } from '@/components/ui/button'
 import { spelling_questions, SPELLING_TYPE_TEXT } from '@/data/games/spelling'
 import { cn } from '@/lib/utils'
@@ -12,8 +12,7 @@ import { cn } from '@/lib/utils'
 const SpellingPage = () => {
   return (
     <>
-      <Back />
-      <h2 className='mb-16 mt-8 text-center text-5xl font-bold'>拼字遊戲</h2>
+      <PageTitle title='拼字遊戲' />
       <div className='grid grid-cols-1 gap-8 lg:grid-cols-2'>
         {spelling_questions.map((question) => (
           <div key={question.type} className='relative rounded-lg border'>

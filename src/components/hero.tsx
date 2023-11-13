@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 import React from 'react'
 
 import { cn } from '@/lib/utils'
@@ -23,7 +24,7 @@ const Hero = () => {
   }, [])
 
   return (
-    <div className='relative flex min-h-[--content] flex-col items-center justify-center'>
+    <div className='relative flex min-h-[calc(100vh-104px)] flex-col items-center justify-center'>
       <div className='text-center text-lg'>
         <h2 className='mb-2 text-2xl font-bold'>歡迎來到</h2>
         <h1 className='bg-gradient-to-r from-[#ff1835] to-[#ffc900] bg-clip-text text-5xl font-black text-transparent sm:text-8xl'>
@@ -38,12 +39,12 @@ const Hero = () => {
           </h2>
           <p className='sm:text-lg'>加入我們，有效提升您的英語詞彙技能。</p>
         </div>
-        <button
-          type='button'
+        <Link
           className={cn(
-            'relative h-11 rounded-md bg-background from-[#ff1835] to-[#ffc900] px-8 text-lg font-medium hover:bg-gradient-to-r hover:text-white',
+            'relative flex h-11 items-center rounded-md bg-background from-[#ff1835] to-[#ffc900] px-8 text-lg font-medium hover:bg-gradient-to-r hover:text-white',
             'after:absolute after:-inset-px after:-z-10 after:rounded-[calc(var(--radius)-1px)] after:bg-gradient-to-r after:from-[#ff1835] after:to-[#ffc900]'
           )}
+          href='/games'
         >
           <motion.span
             className='absolute inset-0 -z-20 rounded-lg bg-gradient-to-br from-[#ff1835] to-[#ffc900] blur-xl'
@@ -51,21 +52,8 @@ const Hero = () => {
             transition={{ duration: 1, ease: 'linear' }}
           />
           開始學習
-        </button>
+        </Link>
       </div>
-
-      {/* <div className='relative mx-auto max-w-5xl'>
-        <AspectRatio ratio={16 / 9}>
-          <video
-            src='/videos/hero-section-video.mp4'
-            className='h-full w-full rounded-lg dark:brightness-90'
-            autoPlay
-            loop
-            muted
-          />
-        </AspectRatio>
-        <div className='absolute inset-0 left-1/2 -z-10 w-full -translate-x-1/2 bg-[radial-gradient(circle,_rgba(131,58,180,0.5)_0%,_rgba(253,29,29,0.5)_50%,_rgba(252,176,69,0.5)_100%)] blur-3xl' />
-      </div> */}
     </div>
   )
 }
