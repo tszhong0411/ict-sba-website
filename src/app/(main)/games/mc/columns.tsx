@@ -17,7 +17,7 @@ export const columns: Array<ColumnDef<MC_Question>> = [
       return (
         <Link
           href={`/games/mc/${type}`}
-          className='hover:text-blue-500 dark:hover:text-blue-400'
+          className='underline hover:text-blue-500 dark:hover:text-blue-400'
         >
           {name}
         </Link>
