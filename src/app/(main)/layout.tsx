@@ -10,10 +10,10 @@ const MainLayout = (props: MainLayoutProps) => {
   const { children } = props
 
   return (
-    <>
+    <div className='min-h-[--content]'>
       <Breadcrumb />
       {children}
-    </>
+    </div>
   )
 }
 

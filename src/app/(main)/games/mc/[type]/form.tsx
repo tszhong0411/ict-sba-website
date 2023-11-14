@@ -87,11 +87,14 @@ const Form = (props: FormProps) => {
 
             return (
               <div key={question.title}>
-                <div className='mb-3 text-lg'>
+                <div className='mb-3 text-[calc(18px*var(--font-size))]'>
                   {index + 1}. {question.title}
                 </div>
                 {question.options.map((option) => (
-                  <div key={option}>
+                  <div
+                    key={option}
+                    className='text-[calc(16px*var(--font-size))]'
+                  >
                     {option}
                     {option === question.answer && ' ✅'}
                     {!isCorrect && option === userAnswers[index] && ' ❌'}
@@ -106,7 +109,7 @@ const Form = (props: FormProps) => {
         <>
           {questions.map((question, index) => (
             <div key={question.title}>
-              <div className='mb-3 text-lg'>
+              <div className='mb-3 text-[calc(18px*var(--font-size))]'>
                 {index + 1}. {question.title}
               </div>
               <RadioGroup
@@ -153,7 +156,12 @@ const RadioButton = (props: QuestionProps) => {
   return (
     <div key={option} className='flex items-center space-x-2'>
       <RadioGroupItem value={option} id={`${index}-${id}`} />
-      <Label htmlFor={`${index}-${id}`}>{option}</Label>
+      <Label
+        htmlFor={`${index}-${id}`}
+        className='text-[calc(16px*var(--font-size))]'
+      >
+        {option}
+      </Label>
     </div>
   )
 }

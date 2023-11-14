@@ -5,9 +5,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { type Session } from 'next-auth'
 import { signOut } from 'next-auth/react'
+import React from 'react'
 
 import { config } from '@/config/site'
+import { cn } from '@/lib/utils'
 
+import ChangeFontSize from './change-font-size'
 import MobileNav from './mobile-nav'
 import { Button } from './ui/button'
 import {
@@ -20,9 +23,11 @@ import {
 } from './ui/dropdown-menu'
 import {
   NavigationMenu,
+  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
+  NavigationMenuTrigger,
   navigationMenuTriggerStyle
 } from './ui/navigation-menu'
 
@@ -30,12 +35,41 @@ type HeaderProps = {
   user: Session['user'] | null
 }
 
+const ListItem = React.forwardRef<
+  React.ElementRef<'a'>,
+  React.ComponentPropsWithoutRef<'a'>
+>((props, ref) => {
+  const { className, title, children, ...rest } = props
+
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <a
+          ref={ref}
+          className={cn(
+            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+            className
+          )}
+          {...rest}
+        >
+          <div className='text-sm font-medium leading-none'>{title}</div>
+          <p className='line-clamp-2 text-sm leading-snug text-muted-foreground'>
+            {children}
+          </p>
+        </a>
+      </NavigationMenuLink>
+    </li>
+  )
+})
+
+ListItem.displayName = 'ListItem'
+
 const Header = (props: HeaderProps) => {
   const { user } = props
 
   return (
     <header className='px-2 py-8 sm:px-6'>
-      <div className='relative mx-auto flex max-w-7xl items-center justify-between'>
+      <div className='relative mx-auto flex h-10 max-w-7xl items-center justify-between'>
         <div className='flex items-center gap-2'>
           <MobileNav />
           <Link
@@ -48,18 +82,40 @@ const Header = (props: HeaderProps) => {
         </div>
         <NavigationMenu className='absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 sm:flex'>
           <NavigationMenuList>
-            {config.navLinks.map((link) => (
-              <NavigationMenuItem key={link.href}>
-                <Link href={link.href} legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    {link.label}
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-            ))}
+            {config.navLinks.map((link) =>
+              link.submenu ? (
+                <NavigationMenuItem key={link.label}>
+                  <NavigationMenuTrigger>{link.label}</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className='grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] '>
+                      {link.submenu.map((sublink) => (
+                        <ListItem
+                          key={sublink.label}
+                          title={sublink.label}
+                          href={sublink.href}
+                        >
+                          {sublink.description}
+                        </ListItem>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              ) : (
+                <NavigationMenuItem key={link.href}>
+                  <Link href={link.href} legacyBehavior passHref>
+                    <NavigationMenuLink
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      {link.label}
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+              )
+            )}
           </NavigationMenuList>
         </NavigationMenu>
-        <div className='flex items-center gap-2'>
+        <div className='flex items-center gap-4'>
+          <ChangeFontSize />
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>

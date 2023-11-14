@@ -4,6 +4,12 @@ import React from 'react'
 
 import { config } from '@/config/site'
 
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger
+} from './ui/accordion'
 import { Button } from './ui/button'
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet'
 
@@ -17,21 +23,42 @@ const MobileNav = () => {
           <MenuIcon />
         </Button>
       </SheetTrigger>
-      <SheetContent side='left' className='pr-0'>
+      <SheetContent side='left'>
         <div className='flex items-center gap-4 text-lg font-bold'>
           <BookOpen />
           VocabMaster
         </div>
         <nav className='my-6 flex flex-col gap-4 text-lg font-medium'>
-          {config.navLinks.map((link) => (
-            <Link
-              href={link.href}
-              key={link.href}
-              onClick={() => setOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {config.navLinks.map((link) =>
+            link.submenu ? (
+              <Accordion type='single' key={link.label} collapsible>
+                <AccordionItem value='item-1' className='border-none'>
+                  <AccordionTrigger className='py-0'>
+                    {link.label}
+                  </AccordionTrigger>
+                  <AccordionContent className='flex flex-col gap-4 py-4 pl-4 text-lg font-medium'>
+                    {link.submenu.map((sublink) => (
+                      <Link
+                        href={sublink.href}
+                        key={sublink.href}
+                        onClick={() => setOpen(false)}
+                      >
+                        {sublink.label}
+                      </Link>
+                    ))}
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            ) : (
+              <Link
+                href={link.href}
+                key={link.href}
+                onClick={() => setOpen(false)}
+              >
+                {link.label}
+              </Link>
+            )
+          )}
         </nav>
       </SheetContent>
     </Sheet>

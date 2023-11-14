@@ -34,7 +34,7 @@ const DataTable = <TData, TValue>({
   return (
     <div className='rounded-md border'>
       <Table>
-        <TableHeader>
+        <TableHeader className='text-[calc(16px*var(--font-size))]'>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
@@ -58,6 +58,7 @@ const DataTable = <TData, TValue>({
               <TableRow
                 key={row.id}
                 data-state={row.getIsSelected() && 'selected'}
+                className='text-[calc(16px*var(--font-size))]'
               >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>

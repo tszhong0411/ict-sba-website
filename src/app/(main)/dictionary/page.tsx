@@ -54,7 +54,7 @@ const DictionaryPage = () => {
   })
 
   return (
-    <div className='mx-auto min-h-[--content] max-w-5xl px-4'>
+    <div className='mx-auto max-w-5xl px-4'>
       <PageTitle title='字典' />
       <Form {...form}>
         <form
@@ -92,7 +92,9 @@ const DictionaryPage = () => {
         </form>
       </Form>
       {loading && (
-        <p className='my-24 text-center text-3xl font-bold'>搜尋中...</p>
+        <p className='my-24 text-center text-[calc(30px*var(--font-size))] font-bold'>
+          搜尋中...
+        </p>
       )}
       {data && (
         <div className='my-12 space-y-16 sm:px-4'>
@@ -100,8 +102,12 @@ const DictionaryPage = () => {
             <div
               key={`${word}-${partOfSpeech}-${meaning[0].definition.english}`}
             >
-              <h2 className='my-2 text-4xl'>{word}</h2>
-              <p className='text-sm font-bold italic'>{partOfSpeech}</p>
+              <h2 className='my-2 text-[calc(36px*var(--font-size))]'>
+                {word}
+              </h2>
+              <p className='text-[calc(14px*var(--font-size))] font-bold italic'>
+                {partOfSpeech}
+              </p>
               {meaning.map(({ type, definition, examples }) => (
                 <React.Fragment key={`${type}-${definition.english}`}>
                   <Separator className='my-2 h-0.5' />
@@ -109,7 +115,7 @@ const DictionaryPage = () => {
                     {type && (
                       <h3 className='mb-4'>
                         <span className='font-bold'>{word}</span>{' '}
-                        <span className='text-sm font-bold italic'>
+                        <span className='text-[calc(14px*var(--font-size))] font-bold italic'>
                           {' '}
                           {partOfSpeech}
                         </span>{' '}
@@ -117,8 +123,12 @@ const DictionaryPage = () => {
                       </h3>
                     )}
                     <div className='space-y-2'>
-                      <p className='font-bold'>{definition.english}</p>
-                      <p className='font-bold'>{definition.chinese}</p>
+                      <p className='text-[calc(16px*var(--font-size))] font-bold'>
+                        {definition.english}
+                      </p>
+                      <p className='text-[calc(16px*var(--font-size))] font-bold'>
+                        {definition.chinese}
+                      </p>
                     </div>
                     {examples.map(({ english, chinese }) => (
                       <ul
@@ -126,8 +136,12 @@ const DictionaryPage = () => {
                         className='my-4 ml-6 list-disc'
                       >
                         <li>
-                          <p>{english}</p>
-                          <p>{chinese}</p>
+                          <p className='text-[calc(16px*var(--font-size))]'>
+                            {english}
+                          </p>
+                          <p className='text-[calc(16px*var(--font-size))]'>
+                            {chinese}
+                          </p>
                         </li>
                       </ul>
                     ))}

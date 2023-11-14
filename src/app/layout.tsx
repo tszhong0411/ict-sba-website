@@ -1,4 +1,5 @@
 import { Inter, Noto_Sans_TC, Roboto_Mono } from 'next/font/google'
+import { cookies } from 'next/headers'
 
 import './globals.css'
 import Footer from '@/components/footer'
@@ -37,11 +38,16 @@ type RootLayoutProps = {
 const RootLayout = async (props: RootLayoutProps) => {
   const { children } = props
   const user = await getCurrentUser()
+  const cookieStore = cookies()
+  const fontSize = cookieStore.get('font-size')?.value ?? 1
 
   return (
     <html
       lang='en'
       className={cn(inter.variable, notoSansTC.variable, robotoMono.variable)}
+      style={{
+        '--font-size': fontSize
+      }}
       suppressHydrationWarning
     >
       <body>

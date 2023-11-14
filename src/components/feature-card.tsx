@@ -19,9 +19,13 @@ const FeatureCard = (props: FeatureCardProps) => {
         className
       )}
     >
-      <h2 className='text-3xl font-extrabold'>{emoji}</h2>
-      <h2 className='py-4 text-2xl font-extrabold'>{title}</h2>
-      <div className='text-sm leading-6'>{text}</div>
+      <h2 className='text-[calc(30px*var(--font-size))] font-extrabold'>
+        {emoji}
+      </h2>
+      <h2 className='py-4 text-[calc(24px*var(--font-size))] font-extrabold'>
+        {title}
+      </h2>
+      <div className='text-[calc(14px*var(--font-size))] leading-6'>{text}</div>
     </div>
   )
 }

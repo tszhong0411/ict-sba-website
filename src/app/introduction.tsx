@@ -11,7 +11,7 @@ const Introduction = () => {
         <AspectRatio ratio={16 / 9}>
           {/* eslint-disable jsx-a11y/media-has-caption */}
           <video
-            src='/videos/hero-section-video.mp4'
+            src='/videos/showcase.webm'
             className='h-full w-full rounded-lg dark:brightness-90'
             loop
             controls

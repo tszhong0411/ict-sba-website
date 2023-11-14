@@ -121,134 +121,150 @@ const Form = (props: FormProps) => {
   const lengthOfAnswer = questions[currentIndex].answer.length
 
   return (
-    <>
-      <div className='mx-auto max-w-3xl flex-col items-center justify-center gap-8'>
-        <div className='flex w-full items-center justify-center'>
-          <div className='flex flex-col items-center gap-4 p-16'>
-            <div className='text-2xl font-bold'>難度</div>
-            <span className='text-lg'>
-              {SPELLING_DIFFICULTY_TEXT[difficulty]}
-            </span>
+    <div className='mx-auto max-w-3xl flex-col items-center justify-center gap-8'>
+      <div className='relative flex w-full items-center justify-center'>
+        <div className='flex flex-col items-center gap-4 p-16'>
+          <div className='text-[calc(24px*var(--font-size))] font-bold'>
+            難度
           </div>
-          <Separator orientation='vertical' className='h-20' />
-          <div className='flex flex-col items-center gap-4 p-16'>
-            <div className='text-2xl font-bold'>類型</div>
-            <span className='text-lg'>{SPELLING_TYPE_TEXT[type]}</span>
-          </div>
+          <span className='text-[calc(18px*var(--font-size))]'>
+            {SPELLING_DIFFICULTY_TEXT[difficulty]}
+          </span>
         </div>
-        {!showAnswers && (
-          <div className='flex gap-4 max-sm:flex-col'>
-            <Image
-              src={`/images/games/spelling/${questions[currentIndex].answer}.png`}
-              width={1000 / 3}
-              height={1500 / 3}
-              className='mx-auto rounded-md border object-cover'
-              alt={`第 ${currentIndex} 題的圖片`}
-              priority
-            />
-            <div className='flex w-full flex-col gap-4'>
-              <Label htmlFor='answer'>答案</Label>
-              <Input
-                maxLength={lengthOfAnswer}
-                size={lengthOfAnswer}
-                id='answer'
-                ref={inputRef}
-                onChange={(e) => setCurrentAnswer(e.target.value)}
-                className='mx-auto h-16 font-mono text-4xl tracking-[14px]'
-                onKeyDown={(e) => e.key === 'Enter' && nextQuestion()}
-              />
-              <div className='flex justify-center gap-2'>
-                {!isFirstQuestion && (
-                  <Button onClick={previousQuestion} className='w-full'>
-                    上一題
-                  </Button>
-                )}
-                {!isLastQuestion && (
-                  <Button onClick={nextQuestion} className='w-full'>
-                    下一題
-                  </Button>
-                )}
-                {isLastQuestion && (
-                  <Button
-                    onClick={submitHandler}
-                    className={cn(
-                      'w-full',
-                      isSubmitting && 'cursor-not-allowed opacity-50'
-                    )}
-                    variant='green'
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting && (
-                      <Loader2Icon className='mr-2 animate-spin' />
-                    )}
-                    提交
-                  </Button>
-                )}
-              </div>
-              <Accordion
-                type='single'
-                onValueChange={setAccordionValue}
-                value={accordionValue}
-                collapsible
-              >
-                <AccordionItem value='answer'>
-                  <AccordionTrigger className='px-2'>提示</AccordionTrigger>
-                  <AccordionContent className='flex items-center gap-2 px-2 text-2xl font-medium'>
-                    {questions[currentIndex].hint}
-                    <Volume2Icon
-                      size={24}
-                      className='cursor-pointer'
-                      onClick={async () => {
-                        const audio = new Audio(
-                          await getPronunciation(
-                            questions[currentIndex].answer,
-                            'english-chinese-traditional'
-                          )
-                        )
-
-                        await audio.play()
-                      }}
-                    />
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            </div>
+        <Separator orientation='vertical' className='h-20' />
+        <div className='flex flex-col items-center gap-4 p-16'>
+          <div className='text-[calc(24px*var(--font-size))] font-bold'>
+            類型
           </div>
-        )}
-        {showAnswers && !!answers && (
-          <div className='space-y-4'>
-            {questions.map((question, index) => {
-              const { answers: userAnswers } = answers
-              const isCorrect =
-                question.answer.toLowerCase() ===
-                (userAnswers[index] ?? '').toLowerCase()
-
-              return (
-                <div key={question.answer} className='space-y-4 p-4'>
-                  <div className='relative mx-auto'>
-                    <Image
-                      src={`/images/games/spelling/${questions[index].answer}.png`}
-                      width={1000 / 2}
-                      height={1500 / 2}
-                      className='mx-auto rounded-md border object-cover'
-                      alt={`第 ${index} 題的圖片`}
-                    />
-                  </div>
-                  <div className='flex flex-col text-center'>
-                    {!isCorrect && (
-                      <span className='text-4xl line-through'>
-                        {userAnswers[index]} ❌
-                      </span>
-                    )}
-                    <span className='text-4xl'>{question.answer} ✅</span>
-                  </div>
-                </div>
-              )
-            })}
+          <span className='text-[calc(18px*var(--font-size))]'>
+            {SPELLING_TYPE_TEXT[type]}
+          </span>
+        </div>
+        {showAnswers && (
+          <div className='absolute bottom-4 flex h-24 w-24 translate-x-48 rotate-12 items-center justify-center rounded-full border border-dashed border-yellow-500 bg-yellow-300 text-2xl font-bold dark:text-black'>
+            已完成
           </div>
         )}
       </div>
-    </>
+      {!showAnswers && (
+        <div className='flex gap-4 max-sm:flex-col'>
+          <Image
+            src={`/images/games/spelling/${questions[currentIndex].answer}.png`}
+            width={1000 / 3}
+            height={1500 / 3}
+            className='mx-auto rounded-md border object-cover'
+            alt={`第 ${currentIndex} 題的圖片`}
+            priority
+          />
+          <div className='flex w-full flex-col gap-4'>
+            <Label
+              htmlFor='answer'
+              className='text-[calc(16px*var(--font-size))]'
+            >
+              答案
+            </Label>
+            <Input
+              maxLength={lengthOfAnswer}
+              size={lengthOfAnswer}
+              id='answer'
+              ref={inputRef}
+              onChange={(e) => setCurrentAnswer(e.target.value)}
+              className='mx-auto h-16 font-mono text-4xl tracking-[14px]'
+              onKeyDown={(e) => e.key === 'Enter' && nextQuestion()}
+            />
+            <div className='flex justify-center gap-2'>
+              {!isFirstQuestion && (
+                <Button onClick={previousQuestion} className='w-full'>
+                  上一題
+                </Button>
+              )}
+              {!isLastQuestion && (
+                <Button onClick={nextQuestion} className='w-full'>
+                  下一題
+                </Button>
+              )}
+              {isLastQuestion && (
+                <Button
+                  onClick={submitHandler}
+                  className={cn(
+                    'w-full',
+                    isSubmitting && 'cursor-not-allowed opacity-50'
+                  )}
+                  variant='green'
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting && (
+                    <Loader2Icon className='mr-2 animate-spin' />
+                  )}
+                  提交
+                </Button>
+              )}
+            </div>
+            <Accordion
+              type='single'
+              onValueChange={setAccordionValue}
+              value={accordionValue}
+              collapsible
+            >
+              <AccordionItem value='answer'>
+                <AccordionTrigger className='px-2 text-[calc(16px*var(--font-size))]'>
+                  提示
+                </AccordionTrigger>
+                <AccordionContent className='flex items-center gap-2 px-2 text-[calc(24px*var(--font-size))] font-medium'>
+                  {questions[currentIndex].hint}
+                  <Volume2Icon
+                    size={24}
+                    className='cursor-pointer'
+                    onClick={async () => {
+                      const audio = new Audio(
+                        await getPronunciation(
+                          questions[currentIndex].answer,
+                          'english-chinese-traditional'
+                        )
+                      )
+
+                      await audio.play()
+                    }}
+                  />
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+        </div>
+      )}
+      {showAnswers && !!answers && (
+        <div className='space-y-4'>
+          {questions.map((question, index) => {
+            const { answers: userAnswers } = answers
+            const isCorrect =
+              question.answer.toLowerCase() ===
+              (userAnswers[index] ?? '').toLowerCase()
+
+            return (
+              <div key={question.answer} className='space-y-4 p-4'>
+                <div className='relative mx-auto'>
+                  <Image
+                    src={`/images/games/spelling/${questions[index].answer}.png`}
+                    width={1000 / 2}
+                    height={1500 / 2}
+                    className='mx-auto rounded-md border object-cover'
+                    alt={`第 ${index} 題的圖片`}
+                  />
+                </div>
+                <div className='flex flex-col text-center'>
+                  {!isCorrect && (
+                    <span className='text-4xl line-through'>
+                      {userAnswers[index]} ❌
+                    </span>
+                  )}
+                  <span className='text-4xl'>{question.answer} ✅</span>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      )}
+    </div>
   )
 }
 

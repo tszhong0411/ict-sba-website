@@ -13,6 +13,25 @@ export const config = {
       href: '/games'
     },
     {
+      label: '反饋',
+      href: '/feedback'
+    },
+    {
+      label: '其他',
+      submenu: [
+        {
+          label: '網站地圖',
+          href: '/sitemap',
+          description: '本網站的結構，顯示所有子頁面'
+        },
+        {
+          label: '聯絡我們',
+          href: '/contact',
+          description: '聯絡我們，提供反饋或建議'
+        }
+      ]
+    },
+    {
       label: '關於',
       href: '/about'
     }
@@ -23,6 +42,9 @@ export const config = {
     about: '關於',
     spelling: '拼字遊戲',
     mc: '多項選擇題',
-    'card-matching': '卡片配對'
+    'card-matching': '卡片配對',
+    feedback: '反饋',
+    sitemap: '網站地圖',
+    contact: '聯絡我們'
   }
 }
