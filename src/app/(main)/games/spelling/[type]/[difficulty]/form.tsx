@@ -219,7 +219,9 @@ const Form = (props: FormProps) => {
           <div className='space-y-4'>
             {questions.map((question, index) => {
               const { answers: userAnswers } = answers
-              const isCorrect = question.answer === userAnswers[index]
+              const isCorrect =
+                question.answer.toLowerCase() ===
+                (userAnswers[index] ?? '').toLowerCase()
 
               return (
                 <div key={question.answer} className='space-y-4 p-4'>
