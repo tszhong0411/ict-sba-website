@@ -23,6 +23,10 @@ import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
 import { searchSchema } from '@/schemas'
 
+export const metadata = {
+  title: '字典'
+}
+
 const DictionaryPage = () => {
   const [loading, setLoading] = React.useState(false)
   const [data, setData] = React.useState<Word[]>()

@@ -1,6 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+export const metadata = {
+  title: '遊戲'
+}
+
 const GamesPage = () => {
   const games = [
     {

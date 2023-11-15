@@ -5,6 +5,10 @@ import { type MC_Question, mc_questions } from '@/data/games/mc'
 import { columns } from './columns'
 import DataTable from './data-table'
 
+export const metadata = {
+  title: '多項選擇題'
+}
+
 const MCPage = async () => {
   const withScore: MC_Question[] = []
 

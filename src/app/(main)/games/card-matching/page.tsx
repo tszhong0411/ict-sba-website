@@ -3,6 +3,10 @@ import Script from 'next/script'
 import PageTitle from '@/components/page-title'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 
+export const metadata = {
+  title: '卡片配對'
+}
+
 const CardMatchingPage = () => {
   return (
     <div>

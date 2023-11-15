@@ -9,6 +9,10 @@ import { buttonVariants } from '@/components/ui/button'
 import { spelling_questions, SPELLING_TYPE_TEXT } from '@/data/games/spelling'
 import { cn } from '@/lib/utils'
 
+export const metadata = {
+  title: '拼字遊戲'
+}
+
 const SpellingPage = () => {
   return (
     <>
