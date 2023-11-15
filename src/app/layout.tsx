@@ -1,4 +1,3 @@
-import { type Metadata } from 'next'
 import { Inter, Noto_Sans_TC, Roboto_Mono } from 'next/font/google'
 import { cookies } from 'next/headers'
 
@@ -28,7 +27,7 @@ const robotoMono = Roboto_Mono({
   subsets: ['latin']
 })
 
-export const metadata: Metadata = {
+export const metadata = {
   title: {
     default: 'VocabMaster | Vocabulary learning website',
     template: '%s | VocabMaster'
