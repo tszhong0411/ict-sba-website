@@ -13,6 +13,7 @@
     "build": "next build",
     "dev": "next dev -p 5050",
     "format": "prettier -w .",
+    "postinstall": "prisma generate",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "prepare": "husky install",
