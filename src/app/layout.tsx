@@ -1,3 +1,4 @@
+import { type Metadata } from 'next'
 import { Inter, Noto_Sans_TC, Roboto_Mono } from 'next/font/google'
 import { cookies } from 'next/headers'
 
@@ -27,8 +28,13 @@ const robotoMono = Roboto_Mono({
   subsets: ['latin']
 })
 
-export const metadata = {
-  title: 'VocabMaster | Vocabulary learning website'
+export const metadata: Metadata = {
+  title: {
+    default: 'VocabMaster | Vocabulary learning website',
+    template: '%s | VocabMaster'
+  },
+  description: 'VocabMaster is a vocabulary learning website.',
+  keywords: ['English', 'vocabulary learning', 'english learning']
 }
 
 type RootLayoutProps = {
