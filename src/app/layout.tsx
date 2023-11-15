@@ -34,7 +34,10 @@ export const metadata: Metadata = {
     template: '%s | VocabMaster'
   },
   description: 'VocabMaster is a vocabulary learning website.',
-  keywords: ['English', 'vocabulary learning', 'english learning']
+  keywords: ['English', 'vocabulary learning', 'english learning'],
+  icons: {
+    icon: '/favicon.png'
+  }
 }
 
 type RootLayoutProps = {
