@@ -1,7 +1,7 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Loader2 } from 'lucide-react'
+import { EyeIcon, EyeOffIcon, Loader2Icon } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 import { signIn } from 'next-auth/react'
 import React from 'react'
@@ -30,6 +30,7 @@ const SignUpForm = () => {
   const searchParams = useSearchParams()
   const callbackUrl = searchParams.get('callbackUrl')
   const [loading, setLoading] = React.useState(false)
+  const [showPassword, setShowPassword] = React.useState(false)
 
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
@@ -120,7 +121,22 @@ const SignUpForm = () => {
             <FormItem>
               <FormLabel>密碼</FormLabel>
               <FormControl>
-                <Input type='password' id='password' required {...field} />
+                <div className='flex items-center gap-2'>
+                  <Input
+                    type={showPassword ? 'text' : 'password'}
+                    id='password'
+                    required
+                    {...field}
+                  />
+                  <Button
+                    onClick={() => setShowPassword(!showPassword)}
+                    size='icon'
+                    variant='ghost'
+                    type='button'
+                  >
+                    {showPassword ? <EyeIcon /> : <EyeOffIcon />}
+                  </Button>
+                </div>
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -133,19 +149,29 @@ const SignUpForm = () => {
             <FormItem>
               <FormLabel>確認密碼</FormLabel>
               <FormControl>
-                <Input
-                  type='password'
-                  id='confirm=password'
-                  required
-                  {...field}
-                />
+                <div className='flex items-center gap-2'>
+                  <Input
+                    type={showPassword ? 'text' : 'password'}
+                    id='confirm=password'
+                    required
+                    {...field}
+                  />
+                  <Button
+                    onClick={() => setShowPassword(!showPassword)}
+                    size='icon'
+                    variant='ghost'
+                    type='button'
+                  >
+                    {showPassword ? <EyeIcon /> : <EyeOffIcon />}
+                  </Button>
+                </div>
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
         <Button type='submit' className='w-full' disabled={loading}>
-          {loading && <Loader2 size={16} className='mr-2' />}
+          {loading && <Loader2Icon size={16} className='mr-2' />}
           註冊
         </Button>
       </form>

@@ -1,7 +1,7 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Loader2 } from 'lucide-react'
+import { Loader2Icon } from 'lucide-react'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
@@ -91,7 +91,7 @@ const DictionaryForm = () => {
             )}
             type='submit'
           >
-            {loading ? <Loader2 className='animate-spin' /> : '搜尋'}
+            {loading ? <Loader2Icon className='animate-spin' /> : '搜尋'}
           </Button>
         </form>
       </Form>
