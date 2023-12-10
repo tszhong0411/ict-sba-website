@@ -14,13 +14,13 @@ const FeedbackPage = () => {
       <PageTitle title='反饋' />
       <form
         action='mailto:me@honghong.me'
-        method='GET'
+        method='post'
         encType='text/plain'
         className='mx-auto max-w-2xl space-y-4'
       >
         <div className='grid items-center gap-1.5'>
           <Label htmlFor='email'>電子郵件</Label>
-          <Input type='text' id='email' name='email' />
+          <Input type='email' id='email' name='email' />
         </div>
         <div className='grid items-center gap-1.5'>
           <Label htmlFor='subject'>標題</Label>
