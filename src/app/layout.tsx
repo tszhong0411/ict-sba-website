@@ -58,7 +58,7 @@ const RootLayout = async (props: RootLayoutProps) => {
       }}
       suppressHydrationWarning
     >
-      <body>
+      <body className='font-default'>
         <Providers>
           <Header user={user} />
           <main className='mx-auto max-w-7xl p-4 sm:px-8 sm:pb-12 sm:pt-0'>
