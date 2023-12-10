@@ -15,6 +15,11 @@ export type Word = {
   }>
 }
 
+export type Vocabulary = {
+  words: Word[]
+  pronunciation: string
+}
+
 type Languages =
   | 'english'
   | 'english-chinese-simplified'
@@ -28,7 +33,10 @@ export const getDictionary = async (query: string, language: Languages) => {
 
   const partOfSpeech = [...document.querySelectorAll('.pr .entry-body__el')]
 
-  const results: Word[] = []
+  const results: Vocabulary = {
+    words: [],
+    pronunciation: ''
+  }
 
   for (const el of partOfSpeech) {
     const result: Word = {
@@ -72,7 +80,15 @@ export const getDictionary = async (query: string, language: Languages) => {
       })
     }
 
-    results.push(result)
+    results['words'].push(result)
+  }
+
+  const pronunciation = document.querySelector(
+    '.us.dpron-i .ipa.dipa.lpr-2.lpl-1'
+  ) as HTMLSpanElement
+
+  if (pronunciation && pronunciation.textContent) {
+    results.pronunciation = pronunciation.textContent
   }
 
   return results

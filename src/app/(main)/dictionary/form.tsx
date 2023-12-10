@@ -1,13 +1,17 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Loader2Icon } from 'lucide-react'
+import { Loader2Icon, Volume2Icon } from 'lucide-react'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 import { type z } from 'zod'
 
-import { getDictionary, type Word } from '@/actions/dictionary'
+import {
+  getDictionary,
+  getPronunciation,
+  type Vocabulary
+} from '@/actions/dictionary'
 import PageTitle from '@/components/page-title'
 import { Button } from '@/components/ui/button'
 import {
@@ -29,10 +33,10 @@ export const metadata = {
 
 const DictionaryForm = () => {
   const [loading, setLoading] = React.useState(false)
-  const [data, setData] = React.useState<Word[]>()
+  const [data, setData] = React.useState<Vocabulary>()
 
   const onSubmit = async (values: z.infer<typeof searchSchema>) => {
-    setData([])
+    setData({ words: [], pronunciation: '' })
     setLoading(true)
 
     const result = await getDictionary(
@@ -40,7 +44,7 @@ const DictionaryForm = () => {
       'english-chinese-traditional'
     )
 
-    if (result.length === 0) {
+    if (result.words.length === 0) {
       setLoading(false)
       return toast.error('詞語不存在')
     }
@@ -102,16 +106,34 @@ const DictionaryForm = () => {
       )}
       {data && (
         <div className='my-12 space-y-16 sm:px-4'>
-          {data.map(({ word, partOfSpeech, meaning }) => (
+          {data.words.map(({ word, partOfSpeech, meaning }) => (
             <div
               key={`${word}-${partOfSpeech}-${meaning[0].definition.english}`}
             >
               <h2 className='my-2 text-[calc(36px*var(--font-size))]'>
                 {word}
               </h2>
-              <p className='text-[calc(14px*var(--font-size))] font-bold italic'>
+              <p className='mb-1 text-[calc(14px*var(--font-size))] font-bold italic'>
                 {partOfSpeech}
               </p>
+              <div className='flex items-center gap-2 text-sm'>
+                US{' '}
+                <Volume2Icon
+                  size={20}
+                  className='cursor-pointer'
+                  onClick={async () => {
+                    const audio = new Audio(
+                      await getPronunciation(
+                        word,
+                        'english-chinese-traditional'
+                      )
+                    )
+
+                    await audio.play()
+                  }}
+                />{' '}
+                /{data.pronunciation}/
+              </div>
               {meaning.map(({ type, definition, examples }) => (
                 <React.Fragment key={`${type}-${definition.english}`}>
                   <Separator className='my-2 h-0.5' />
