@@ -10,7 +10,7 @@ const SectionTitle = (props: SectionTitleProps) => {
   return (
     <h2
       className={cn(
-        'mx-auto mb-16 mt-6 max-w-[16rem] text-center text-3xl font-extrabold !leading-[1.2] tracking-tight sm:max-w-[26rem] sm:text-5xl lg:max-w-[30rem] lg:text-6xl',
+        'mx-auto mb-16 mt-6 max-w-[16rem] text-center text-3xl font-bold !leading-[1.2] tracking-tight sm:max-w-[26rem] sm:text-5xl lg:max-w-[30rem] lg:text-6xl',
         className
       )}
       {...rest}

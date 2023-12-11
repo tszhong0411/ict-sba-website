@@ -141,7 +141,7 @@ const Form = (props: FormProps) => {
           </span>
         </div>
         {showAnswers && (
-          <div className='absolute bottom-4 flex h-24 w-24 translate-x-48 rotate-12 items-center justify-center rounded-full border border-dashed border-yellow-500 bg-yellow-300 text-2xl font-bold dark:text-black'>
+          <div className='absolute bottom-40 flex h-24 w-24 translate-x-32 rotate-12 items-center justify-center rounded-full border border-dashed border-yellow-500 bg-yellow-300 text-2xl font-bold dark:text-black md:bottom-4 md:translate-x-48'>
             已完成
           </div>
         )}
