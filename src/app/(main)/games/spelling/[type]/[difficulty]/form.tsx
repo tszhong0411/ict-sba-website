@@ -212,9 +212,9 @@ const Form = (props: FormProps) => {
                 </AccordionTrigger>
                 <AccordionContent className='flex items-center gap-2 px-2 text-[calc(24px*var(--font-size))] font-medium'>
                   {questions[currentIndex].hint}
-                  <Volume2Icon
-                    size={24}
-                    className='cursor-pointer'
+                  <Button
+                    variant='ghost'
+                    size='icon'
                     onClick={async () => {
                       const audio = new Audio(
                         await getPronunciation(
@@ -225,7 +225,9 @@ const Form = (props: FormProps) => {
 
                       await audio.play()
                     }}
-                  />
+                  >
+                    <Volume2Icon size={24} />
+                  </Button>
                 </AccordionContent>
               </AccordionItem>
             </Accordion>

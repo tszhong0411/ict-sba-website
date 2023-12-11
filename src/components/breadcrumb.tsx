@@ -15,7 +15,7 @@ const Breadcrumb = () => {
   const pathNames = paths.split('/').filter(Boolean)
 
   return (
-    <ul className='flex items-center pb-8 pt-3'>
+    <ul className='flex items-center pb-8 pt-3 print:hidden'>
       <li className='text-foreground/60 hover:text-foreground/80'>
         <Link href='/'>首頁</Link>
       </li>

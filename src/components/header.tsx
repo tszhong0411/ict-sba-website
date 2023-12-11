@@ -68,7 +68,7 @@ const Header = (props: HeaderProps) => {
   const { user } = props
 
   return (
-    <header className='px-2 py-8 sm:px-6'>
+    <header className='px-2 py-8 print:hidden sm:px-6'>
       <div className='relative mx-auto flex h-10 max-w-7xl items-center justify-between'>
         <div className='flex items-center gap-2'>
           <MobileNav />
