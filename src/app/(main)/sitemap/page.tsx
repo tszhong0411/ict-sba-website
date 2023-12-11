@@ -33,6 +33,10 @@ const allLinks = [
     ]
   },
   {
+    label: '留言簿',
+    href: '/guestbook'
+  },
+  {
     label: '反饋',
     href: '/feedback'
   },

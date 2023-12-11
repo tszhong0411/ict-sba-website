@@ -13,6 +13,10 @@ export const config = {
       href: '/games'
     },
     {
+      label: '留言簿',
+      href: '/guestbook'
+    },
+    {
       label: '反饋',
       href: '/feedback'
     },
@@ -39,6 +43,7 @@ export const config = {
   pathTranslation: {
     dictionary: '字典',
     games: '遊戲',
+    guestbook: '留言簿',
     about: '關於',
     spelling: '拼字遊戲',
     mc: '多項選擇題',
