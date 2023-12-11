@@ -21,7 +21,7 @@ const SpellingPage = () => {
               src={`/images/games/spelling/${question.type}.png`}
               width={2250}
               height={1500}
-              className='rounded-lg opacity-30'
+              className='rounded-lg bg-white opacity-30'
               alt={`${SPELLING_TYPE_TEXT[question.type]}拼字的封面`}
               priority
             />

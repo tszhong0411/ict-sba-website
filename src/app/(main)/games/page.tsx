@@ -5,28 +5,28 @@ export const metadata = {
   title: '遊戲'
 }
 
-const GamesPage = () => {
-  const games = [
-    {
-      name: '拼字遊戲',
-      link: '/games/spelling',
-      banner: '/images/games/spelling.png',
-      description: '一個有趣的拼字遊戲，讓你挑戰你的詞彙知識和拼字能力。'
-    },
-    {
-      name: '多項選擇題',
-      link: '/games/mc',
-      banner: '/images/games/mc.png',
-      description: '提供有關文法、時態的多項選擇題。'
-    },
-    {
-      name: '卡片配對',
-      link: '/games/card-matching',
-      banner: '/images/games/card-matching.png',
-      description: '詞彙卡片配對，有效提升記憶力。'
-    }
-  ]
+export const games = [
+  {
+    name: '拼字遊戲',
+    link: '/games/spelling',
+    banner: '/images/games/spelling.png',
+    description: '一個有趣的拼字遊戲，讓你挑戰你的詞彙知識和拼字能力。'
+  },
+  {
+    name: '多項選擇題',
+    link: '/games/mc',
+    banner: '/images/games/mc.png',
+    description: '提供有關文法、時態的多項選擇題。'
+  },
+  {
+    name: '卡片配對',
+    link: '/games/card-matching',
+    banner: '/images/games/card-matching.png',
+    description: '詞彙卡片配對，有效提升記憶力。'
+  }
+]
 
+const GamesPage = () => {
   return (
     <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-3'>
       {games.map((game) => (
