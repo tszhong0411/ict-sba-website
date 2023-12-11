@@ -2,11 +2,10 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { EyeIcon, EyeOffIcon, Loader2Icon } from 'lucide-react'
-import { useRouter, useSearchParams } from 'next/navigation'
 import { signIn } from 'next-auth/react'
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { toast } from 'react-hot-toast'
+import toast from 'react-hot-toast'
 import { type z } from 'zod'
 
 import { Button } from '@/components/ui/button'
@@ -22,11 +21,8 @@ import { Input } from '@/components/ui/input'
 import { signInSchema } from '@/schemas'
 
 const SignInFrom = () => {
-  const searchParams = useSearchParams()
-  const callbackUrl = searchParams.get('callbackUrl')
   const [loading, setLoading] = React.useState(false)
   const [showPassword, setShowPassword] = React.useState(false)
-  const router = useRouter()
 
   const form = useForm<z.infer<typeof signInSchema>>({
     resolver: zodResolver(signInSchema),
@@ -41,18 +37,15 @@ const SignInFrom = () => {
 
     const status = await signIn('credentials', {
       email: values.email,
-      password: values.password,
-      callbackUrl: callbackUrl ?? '/'
+      password: values.password
     })
 
     if (status?.error) {
       setLoading(false)
       toast.error('電子郵件或密碼錯誤')
-      return
     }
 
-    setLoading(false)
-    router.refresh()
+    // router.refresh()
   }
 
   return (
