@@ -96,8 +96,8 @@ const Messages = (props: MessagesProps) => {
               </div>
             </div>
             <div className='break-words pl-[52px]'>{body}</div>
-            {(user && created_by === user.name) ||
-              (created_by === user?.username && (
+            {user &&
+              (created_by === user.name || created_by === user.username) && (
                 <div className='mt-4 flex justify-end'>
                   <AlertDialog>
                     <AlertDialogTrigger asChild>
@@ -125,7 +125,7 @@ const Messages = (props: MessagesProps) => {
                     </AlertDialogContent>
                   </AlertDialog>
                 </div>
-              ))}
+              )}
           </div>
         )
       })}
