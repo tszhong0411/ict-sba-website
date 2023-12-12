@@ -1,5 +1,6 @@
 'use client'
 
+import { type Guestbook } from '@prisma/client'
 import dayjs from 'dayjs'
 import { UserIcon } from 'lucide-react'
 import { type Session } from 'next-auth'
@@ -18,17 +19,9 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 
-export type Message = {
-  id: number
-  body: string
-  image: string | null
-  created_by: string
-  updated_at: Date
-}
-
 type MessagesProps = {
   user: Session['user'] | null
-  messages: Message[]
+  messages: Guestbook[]
 }
 
 type UpdatedDateProps = {
@@ -73,7 +66,7 @@ const Messages = (props: MessagesProps) => {
   return (
     <div className='mt-10 flex flex-col gap-4'>
       {messages.map((message) => {
-        const { id, image, created_by, updated_at, body } = message
+        const { id, email, image, created_by, updated_at, body } = message
 
         return (
           <div key={id} className='rounded-lg border p-4'>
@@ -96,36 +89,35 @@ const Messages = (props: MessagesProps) => {
               </div>
             </div>
             <div className='break-words pl-[52px]'>{body}</div>
-            {user &&
-              (created_by === user.name || created_by === user.username) && (
-                <div className='mt-4 flex justify-end'>
-                  <AlertDialog>
-                    <AlertDialogTrigger asChild>
-                      <Button
-                        disabled={isDeleting}
-                        variant='destructive'
-                        type='button'
+            {user && email === user.email && (
+              <div className='mt-4 flex justify-end'>
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button
+                      disabled={isDeleting}
+                      variant='destructive'
+                      type='button'
+                    >
+                      刪除
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <div className='mb-2'>刪除一則留言</div>
+                    <div className='flex justify-end gap-2'>
+                      <AlertDialogCancel>取消</AlertDialogCancel>
+                      <AlertDialogAction
+                        onClick={() => {
+                          return deleteMessageHandler(Number(id))
+                        }}
+                        className={buttonVariants({ variant: 'destructive' })}
                       >
                         刪除
-                      </Button>
-                    </AlertDialogTrigger>
-                    <AlertDialogContent>
-                      <div className='mb-2'>刪除一則留言</div>
-                      <div className='flex justify-end gap-2'>
-                        <AlertDialogCancel>取消</AlertDialogCancel>
-                        <AlertDialogAction
-                          onClick={() => {
-                            return deleteMessageHandler(id)
-                          }}
-                          className={buttonVariants({ variant: 'destructive' })}
-                        >
-                          刪除
-                        </AlertDialogAction>
-                      </div>
-                    </AlertDialogContent>
-                  </AlertDialog>
-                </div>
-              )}
+                      </AlertDialogAction>
+                    </div>
+                  </AlertDialogContent>
+                </AlertDialog>
+              </div>
+            )}
           </div>
         )
       })}
