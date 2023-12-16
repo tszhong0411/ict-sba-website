@@ -19,8 +19,8 @@ const SpellingPage = () => {
           <div key={question.type} className='relative rounded-lg border'>
             <Image
               src={`/images/games/spelling/${question.type}.png`}
-              width={2250}
-              height={1500}
+              width={1125}
+              height={750}
               className='rounded-lg bg-white opacity-30'
               alt={`${SPELLING_TYPE_TEXT[question.type]}拼字的封面`}
               priority

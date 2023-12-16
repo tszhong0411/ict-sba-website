@@ -37,8 +37,8 @@ const GamesPage = () => {
         >
           <Image
             src={game.banner}
-            width={1280}
-            height={630}
+            width={640}
+            height={315}
             alt={`${game.name}的封面`}
           />
           <div className='space-y-2 px-4 py-6'>

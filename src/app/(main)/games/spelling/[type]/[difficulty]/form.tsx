@@ -150,8 +150,8 @@ const Form = (props: FormProps) => {
         <div className='flex gap-4 max-sm:flex-col'>
           <Image
             src={`/images/games/spelling/${questions[currentIndex].answer}.png`}
-            width={1000 / 3}
-            height={1500 / 3}
+            width={500 / 1.5}
+            height={750 / 1.5}
             className='mx-auto rounded-md border object-cover'
             alt={`第 ${currentIndex} 題的圖片`}
             priority
@@ -247,8 +247,8 @@ const Form = (props: FormProps) => {
                 <div className='relative mx-auto'>
                   <Image
                     src={`/images/games/spelling/${questions[index].answer}.png`}
-                    width={1000 / 2}
-                    height={1500 / 2}
+                    width={500}
+                    height={750}
                     className='mx-auto rounded-md border object-cover'
                     alt={`第 ${index} 題的圖片`}
                   />
