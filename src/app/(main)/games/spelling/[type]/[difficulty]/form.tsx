@@ -154,6 +154,7 @@ const Form = (props: FormProps) => {
             height={750 / 1.5}
             className='mx-auto rounded-md border object-cover'
             alt={`第 ${currentIndex} 題的圖片`}
+            quality={70}
             priority
           />
           <div className='flex w-full flex-col gap-4'>
@@ -251,6 +252,7 @@ const Form = (props: FormProps) => {
                     height={750}
                     className='mx-auto rounded-md border object-cover'
                     alt={`第 ${index} 題的圖片`}
+                    priority
                   />
                 </div>
                 <div className='flex flex-col text-center'>

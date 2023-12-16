@@ -39,6 +39,7 @@ const GamesPage = () => {
             src={game.banner}
             width={640}
             height={315}
+            priority
             alt={`${game.name}的封面`}
           />
           <div className='space-y-2 px-4 py-6'>
